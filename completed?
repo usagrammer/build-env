@@ -6,9 +6,9 @@ else
 fi
 
 if [[ `which mysql` == "*mysql@$MYSQL_VER*" ]]; then
-  echo 'mysql:NG';
+  echo 'mysql:OK';
 else
-  echo 'mysql:OK'
+  echo 'mysql:NG'
 fi
 
 if [[ `which rails` == *rbenv* ]]; then
