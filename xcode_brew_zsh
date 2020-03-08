@@ -18,25 +18,6 @@ xcodeをインストールします。
 xcode-select --install
 read input
 cd ~
-printf "
-++++++++++++++++++++++++++++++++++++++++++
-Homebrewをインストールします。
-
-【Press RETURN to continue or any other key to abort】
-と表示されたらEnterを押してください。
-
-【Password:】
-と表示されたらMacのパスワードを入力してEnterを押してください。
-なお、入力しても何も表示されませんが見えないだけで入力はされています。
-
-以上を読み終わったらEnterを押してください。
-
-++++++++++++++++++++++++++++++++++++++++++
-"
-read input
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
-sudo chown -R `whoami`:admin /usr/local/bin
 brew install zsh
 printf "
 ++++++++++++++++++++++++++++++++++++++++++
