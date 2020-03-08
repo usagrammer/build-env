@@ -1,0 +1,74 @@
+source ~/build-env/set_var
+\
+cd ~
+: 'mysqlを全削除'
+printf "
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+全てのバージョンのmysqlを一旦削除します
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"
+mysqls=($(brew list | grep mysql@) mysql)
+for mysql in $mysqls; do
+  brew uninstall $mysql
+done
+\
+
+sudo rm /etc/my.cnf
+\
+: '本来使いたいmysqlを入れ直す'
+printf "
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+mysqlをインストールします
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"
+brew install mysql@$MYSQL_VER
+\
+: 'mysqlへのパスを再設定'
+printf "
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+mysqlのパスを通します
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"
+sed -i .bak '/opt\/mysql/d' ~/.$ENV_FILE
+echo "export PATH="/usr/local/opt/mysql@${MYSQL_VER}/bin:""'$PATH' >> ~/.$ENV_FILE
+source ~/.$ENV_FILE
+\
+: 'mysqlの権限を修正'
+printf "
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+mysqlの権限を修正します
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"
+sudo chown -R "$(whoami)":admin /usr/local/var/mysql
+sudo chmod 1777 /tmp
+sudo chown root:wheel /tmp
+\
+printf "
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+mysqlを起動します
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"
+: 'sockやプロセスが残っているとmysqlの起動に失敗するので削除'
+sudo rm -rf /tmp/mysql.sock
+sudo pkill -KILL -f mysql
+sudo pkill -KILL -f mysql
+sudo pkill -KILL -f mysql
+\
+: 'mysqlの起動'
+mysql.server start
+\
+: 'mysql自動起動の設定'
+rm -rf ~/Library/LaunchAgents
+mkdir ~/Library/LaunchAgents
+ln -sfv /usr/local/opt/mysql\@$MYSQL_VER/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql\@$MYSQL_VER.plist
+\
+printf "
++++++++++++++++++++++
+mysqlの導入が完了しました。
+
+次はターミナルで
+source ~/build-env/rails
+を実行してください。
++++++++++++++++++++++
+"
