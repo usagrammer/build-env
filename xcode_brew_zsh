@@ -1,5 +1,5 @@
 printf "
-+++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++
 xcodeをインストールします。
 
 【xcode-selectコマンドを実行するには、コマンドライン・デベロッパツールが必要です】
@@ -13,13 +13,13 @@ xcodeをインストールします。
 【command line tools are already installed】と表示されていたり
 インストールが完了した場合はEnterを押してください。
 
-+++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++
 "
 xcode-select --install
 read input
 cd ~
 printf "
-+++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++
 Homebrewをインストールします。
 
 【Press RETURN to continue or any other key to abort】
@@ -31,7 +31,7 @@ Homebrewをインストールします。
 
 以上を読み終わったらEnterを押してください。
 
-+++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++
 "
 read input
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -39,17 +39,17 @@ brew update
 sudo chown -R `whoami`:admin /usr/local/bin
 brew install zsh
 printf "
-+++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++
 zshをインストールします。
 
 パスワードを求められたら
 Macのパスワードを入力してEnterを押してください。
-+++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++
 "
 sudo sh -c "echo `which zsh` >> /etc/shells"
 chsh -s `which zsh`
 printf "
-+++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++
 zshの導入が完了しました。
 
 ターミナルを閉じて起動し直してください。
@@ -61,5 +61,5 @@ zshの導入が完了しました。
 ターミナルで
 source ~/build-env/ruby
 を実行してください。
-+++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++
 "
