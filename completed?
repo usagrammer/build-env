@@ -1,18 +1,18 @@
 source ~/build-env/set_var
-if [[ ${which ruby} == *rbenv* ]]; then
+if [[ `which ruby` == *rbenv* ]]; then
   echo 'ruby:OK';
 else
   echo 'ruby:NG'
 fi
 
-if [[ ${which mysql} == *not* ]]; then
+if [[ `which mysql` == "*mysql@$MYSQL_VER*" ]]; then
   echo 'mysql:NG';
 else
   echo 'mysql:OK'
 fi
 
-if [[ ${which rails} == *not* ]]; then
-  echo 'Rails:NG';
+if [[ `which rails` == *rbenv* ]]; then
+  echo 'Rails:OK';
 else
-  echo 'Rails:OK'
+  echo 'Rails:NG'
 fi
