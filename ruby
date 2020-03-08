@@ -3,11 +3,11 @@ source ~/build-env/set_var
 printf "
 ++++++++++++++++++++++++++++++++++++++++++
 rubyに必要なものである
-rbenv ruby-build readline
+rbenv ruby-build readline openssl
 をインストールします。
 ++++++++++++++++++++++++++++++++++++++++++
 "
-brew install rbenv ruby-build readline
+brew install rbenv ruby-build readline openssl
 brew install readline
 brew link readline --force
 echo 'eval "$(rbenv init -)"' >> ~/.$ENV_FILE

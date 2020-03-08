@@ -12,7 +12,12 @@ for mysql in $mysqls; do
   brew uninstall $mysql
 done
 \
-
+printf "
+++++++++++++++++++++++++++++++++++++++++++
+パスワードを求められたら
+Macのパスワードを入力してEnterを押してください。
+++++++++++++++++++++++++++++++++++++++++++
+"
 sudo rm /etc/my.cnf
 \
 : '本来使いたいmysqlを入れ直す'
